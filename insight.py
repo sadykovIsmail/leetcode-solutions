@@ -57,4 +57,22 @@ Function → Loops → Conditions → Return → Test
 
 
 3) Only increment once per iteration, or use a for loop.
+
+4) ''' UMPIRE template 
+
+  # Understand 
+	inputs:
+	outputs:
+	constraints:
+	edge cases:
+
+  # Match (any problems this reminds you of, any helpful patters to solve this e.g. two pointer technique, any data structures this reminds you of )
+
+  # Plan (pseudocode) 
+  
+  # Implement (python code)
+
+  # Review (dry run of your code)
+
+  # Evaluate (time and space complexity)
     """
