@@ -41,3 +41,5 @@ if __name__ == "__main__":
     q.deQueue()
     if not q.isEmpty():
         print(q.Front())
+
+(tail + 1) % size = (4 + 1) % 5 = 5 % 5 = 0 # use for circular queue
