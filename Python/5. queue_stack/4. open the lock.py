@@ -22,7 +22,7 @@ Example 2:
 Input: deadends = ["8888"], target = "0009"
 Output: 1
 Explanation: We can turn the last wheel in reverse to move from "0000" -> "0009".
-
+f
 Example 3:
 
 Input: deadends = ["8887","8889","8878","8898","8788","8988","7888","9888"], target = "8888"
@@ -38,3 +38,38 @@ target.length == 4
 target will not be in the list deadends.
 target and deadends[i] consist of digits only.
 """
+from typing import List
+from collections import deque
+
+class Solution:
+    def openLock(self, deadends: List[str], target: str) -> int:
+        deadends_set = set(deadends)
+        
+        # FIX 4: If we start on a deadend, we can't even make the first move
+        if "0000" in deadends_set:
+            return -1
+            
+        visited = {"0000"}
+        # FIX 1: Wrap the tuple in a list so the queue holds one item
+        queue = deque([("0000", 0)]) 
+        
+        while queue:
+            cur, step = queue.popleft()
+            
+            if cur == target:
+                return step
+                
+            # Generate all 8 neighbors
+            for i in range(4):
+                digit = int(cur[i])
+                for move in [-1, 1]:
+                    # FIX 2: Use modulo (%) instead of Bitwise AND (&)
+                    new_digit = (digit + move) % 10
+                    neighbor = cur[:i] + str(new_digit) + cur[i + 1:]
+                    
+                    if neighbor not in deadends_set and neighbor not in visited:
+                        # FIX 3: Add to visited so we don't process it again
+                        visited.add(neighbor)
+                        queue.append((neighbor, step + 1))
+                        
+        return -1
