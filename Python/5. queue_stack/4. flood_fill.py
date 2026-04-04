@@ -46,3 +46,37 @@ n == image[i].length
 0 <= sr < m
 0 <= sc < n
 """
+from typing import List
+from typing import List
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        col = image[sr][sc]
+
+        # If the starting color is already the target color, we're done
+        if color == col:   
+            return image
+            
+        # Get dimensions for boundary checks
+        ROWS, COLS = len(image), len(image[0])
+
+        def dfs(r, c):
+            # 1. Check boundaries FIRST to avoid IndexError
+            # 2. Check if the current pixel matches the original color
+            if r < 0 or c < 0 or r >= ROWS or c >= COLS or image[r][c] != col:
+                return
+
+            # Update the pixel to the new color
+            image[r][c] = color
+            
+            # Check all 4 directions
+            neighbors = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+            for dr, dc in neighbors:
+                # Use new variables so we don't overwrite the original 'r' and 'c'
+                new_r, new_c = r + dr, c + dc 
+                dfs(new_r, new_c)
+                
+        # Actually call the function to start the flood fill!
+        dfs(sr, sc)
+        
+        return image
