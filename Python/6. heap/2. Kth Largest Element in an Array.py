@@ -40,3 +40,27 @@ class Solution:
 
 exa = Solution()
 print(exa.findKthLargest([3,2,1,5,6,4], 2))
+
+
+# The best answer
+from typing import List
+import heapq
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        heap = []
+        
+        for num in nums:
+            # 1. Push the new person into the VIP club
+            heapq.heappush(heap, num)
+            
+            # 2. If the club exceeds capacity 'k', kick out the smallest person
+            if len(heap) > k:
+                heapq.heappop(heap)
+                
+        # 3. The absolute smallest person left in the VIP club is our answer
+        return heap[0]
+
+# Your testing style
+exa = Solution()
+print(exa.findKthLargest([3, 2, 1, 5, 6, 4], 2)) # Output should be 5
