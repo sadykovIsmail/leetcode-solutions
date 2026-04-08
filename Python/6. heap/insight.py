@@ -5,7 +5,8 @@ Parent: (i - 1) // 2
 
 template:
 """
-class MinHeap:
+class MinHeapFromScrach:
+
     def __init__(self):
         self.heap = []
         
@@ -73,3 +74,26 @@ class MinHeap:
             current_idx = smallest_idx
             
         return min_val
+    
+
+# Min heap using with heapq
+
+import heapq
+
+# Start with a messy list
+nums = [5, 7, 9, 1, 3]
+
+# 1. HEAPIFY: Rearrange the list into a valid Min-Heap (O(N) time)
+heapq.heapify(nums)
+
+# 2. PEEK: Look at the smallest number without removing it (O(1) time)
+# (It is always sitting at index 0)
+smallest = nums[0]
+
+# 3. POP: Remove and return the smallest number (O(log N) time)
+# (The heap automatically fixes itself after)
+smallest = heapq.heappop(nums)
+
+# 4. PUSH: Add a brand new number (O(log N) time)
+# (The heap automatically bubbles it to the right spot)
+heapq.heappush(nums, 2)
