@@ -97,3 +97,27 @@ smallest = heapq.heappop(nums)
 # 4. PUSH: Add a brand new number (O(log N) time)
 # (The heap automatically bubbles it to the right spot)
 heapq.heappush(nums, 2)
+
+
+# Max-heap template
+import heapq
+
+# Start with a messy list
+nums = [5, 7, 9, 1, 3]
+
+# 1. SETUP: Multiply every single number by -1
+max_heap = [-x for x in nums]  # Turns into [-5, -7, -9, -1, -3]
+
+# 2. HEAPIFY: Rearrange it. (Because -9 is the "smallest", it goes to the top!)
+heapq.heapify(max_heap)
+
+# 3. PEEK: Look at the largest number
+# (Multiply by -1 again to turn it back into a positive number!)
+largest = max_heap[0] * -1
+
+# 4. POP: Remove and return the largest number
+largest = heapq.heappop(max_heap) * -1
+
+# 5. PUSH: Add a new number
+# (You MUST multiply it by -1 before you push it in!)
+heapq.heappush(max_heap, 10 * -1)
