@@ -3,6 +3,11 @@ Left Child: 2i + 1
 Right Child: 2i + 2
 Parent: (i - 1) // 2
 
+Find Median from Data Stream (LeetCode #295) - Hard
+
+Merge k Sorted Lists (LeetCode #23) - Hard
+
+Task Scheduler (LeetCode #621) - Medium
 template:
 """
 class MinHeapFromScrach:
