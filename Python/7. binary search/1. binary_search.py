@@ -38,3 +38,28 @@ class Solution:
             elif nums[mid] > target:
                 right = mid - 1
         return -1
+    
+# the actual one
+def boundary_search(nums: list[int]) -> int:
+    left = 0
+    right = len(nums) - 1
+
+    # Notice the strictly LESS THAN
+    while left < right:
+        # Notice the SAFE mid calculation
+        mid = left + (right - left) // 2
+        
+        if condition_is_met(mid):
+            # This might be the answer, but there could be a better one to the left.
+            # Do NOT cross it out. Keep it in the search space.
+            right = mid
+        else:
+            # This is definitely not the answer. Cross it out completely.
+            left = mid + 1
+
+    # Post-processing: left and right are now pointing to the exact same spot.
+    # Check if that final spot actually meets your condition.
+    if condition_is_met(left):
+        return left
+    
+    return -1
