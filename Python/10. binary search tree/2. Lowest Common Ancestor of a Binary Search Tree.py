@@ -54,3 +54,23 @@ root.right = right
 
 exa = Solution()
 print(exa.lowestCommonAncestor(root, TreeNode(2), TreeNode(8)))
+
+
+# The actual answer
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        node = root
+        
+        while node:
+            # 1. If both are bigger than the current node's value:
+            if p.val > node.val and q.val > node.val:
+                node = node.right
+                
+            # 2. If both are smaller than the current node's value:
+            elif p.val < node.val and q.val < node.val:
+                node = node.left
+                
+            # 3. If they split up or we land exactly on one of them:
+            else:
+                return node
